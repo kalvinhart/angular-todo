@@ -1,0 +1,10 @@
+<form class="form" (ngSubmit)="onSubmit(todoForm)" #todoForm="ngForm">
+  <div class="form-group">
+    <label class="label">Todo Item:</label>
+    <input type="text" name="todoText" id="todoText" ngModel />
+  </div>
+  <div class="button-group">
+    <app-button [text]="'Add'"></app-button>
+    <app-button [text]="'Cancel'"></app-button>
+  </div>
+</form>
