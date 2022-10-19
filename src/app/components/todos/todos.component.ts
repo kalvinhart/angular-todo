@@ -9,12 +9,12 @@ import { Todo } from 'src/app/types/Todo';
 export class TodosComponent implements OnInit {
   todos: Todo[] = [
     {
-      id: 1,
+      id: '1',
       text: 'This is the first todo.',
       completed: false,
     },
     {
-      id: 2,
+      id: '2',
       text: 'This is the second todo.',
       completed: true,
     },
