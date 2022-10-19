@@ -1,0 +1,5 @@
+<div class="todos-container">
+  <app-header></app-header>
+  <app-todo-form></app-todo-form>
+  <app-todo-item *ngFor="let todo of todos" [todo]="todo"></app-todo-item>
+</div>

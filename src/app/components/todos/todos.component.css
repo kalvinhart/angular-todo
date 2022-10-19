@@ -1,0 +1,12 @@
+.todos-container {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid var(--clr-borders);
+  background-color: white;
+}
+
+@media screen and (min-width: 768px) {
+  .todos-container {
+    width: 500px;
+  }
+}
