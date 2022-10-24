@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-todo-form',
@@ -7,11 +6,19 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./todo-form.component.css'],
 })
 export class TodoFormComponent implements OnInit {
+  @Output() addTask: EventEmitter<string> = new EventEmitter();
+  todoText: string = '';
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  onSubmit(form: NgForm): void {
-    console.log(form);
+  submitForm() {
+    if (!this.todoText) return;
+    console.log(this.todoText);
+
+    this.addTask.emit(this.todoText);
+
+    this.todoText = '';
   }
 }
