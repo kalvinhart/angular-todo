@@ -4,5 +4,9 @@
     *ngIf="showAddForm"
     (addTask)="handleSubmit($event)"
   ></app-todo-form>
-  <app-todo-item *ngFor="let todo of todos" [todo]="todo"></app-todo-item>
+  <app-todo-item
+    *ngFor="let todo of todos"
+    [todo]="todo"
+    (handleDelete)="deleteTodo(todo.id)"
+  ></app-todo-item>
 </div>
