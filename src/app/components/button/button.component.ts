@@ -6,8 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./button.component.css'],
 })
 export class ButtonComponent implements OnInit {
+  @Input() type: string = 'button';
   @Input() text!: string;
-  @Input() handleClick!: () => void;
+  @Input() handleClick?: () => void;
 
   constructor() {}
 
