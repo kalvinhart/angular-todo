@@ -1,7 +1,7 @@
-<form class="form" (ngSubmit)="onSubmit(todoForm)" #todoForm="ngForm">
+<form class="form" (ngSubmit)="submitForm()" #todoForm="ngForm">
   <div class="form-group">
-    <label class="label">Todo Item:</label>
-    <input type="text" name="todoText" id="todoText" ngModel />
+    <label class="label" for="todoText">Todo Item:</label>
+    <input type="text" name="todoText" id="todoText" [(ngModel)]="todoText" />
   </div>
   <div class="button-group">
     <app-button [text]="'Add'"></app-button>

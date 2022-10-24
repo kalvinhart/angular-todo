@@ -1,10 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-
-import { v4 as uuid } from 'uuid';
-
-import { TodoService } from 'src/app/services/todo.service';
-import { Todo } from 'src/app/types/Todo';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-todo-form',
@@ -12,20 +6,19 @@ import { Todo } from 'src/app/types/Todo';
   styleUrls: ['./todo-form.component.css'],
 })
 export class TodoFormComponent implements OnInit {
-  constructor(private todoService: TodoService) {}
+  @Output() addTask: EventEmitter<string> = new EventEmitter();
+  todoText: string = '';
+
+  constructor() {}
 
   ngOnInit(): void {}
 
-  onSubmit(form: NgForm): void {
-    const textValue = form.controls['todoText'].value;
-    if (textValue === '') return;
+  submitForm() {
+    if (!this.todoText) return;
+    console.log(this.todoText);
 
-    const todo: Todo = {
-      id: uuid(),
-      text: textValue,
-      completed: false,
-    };
+    this.addTask.emit(this.todoText);
 
-    this.todoService.saveTodo(todo);
+    this.todoText = '';
   }
 }
