@@ -37,4 +37,9 @@ export class TodosComponent implements OnInit {
     this.todoService.saveTodo(todo);
     this.todos.push(todo);
   }
+
+  deleteTodo(id: string) {
+    this.todoService.deleteTodo(id);
+    this.todos = this.todos.filter((t) => t.id !== id);
+  }
 }

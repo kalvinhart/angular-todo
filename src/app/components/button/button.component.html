@@ -1,7 +1,8 @@
 <button
   type="{{ type }}"
   class="btn"
-  (click)="handleClick ? handleClick() : null"
+  [ngClass]="'btn-' + variant"
+  (click)="onClick()"
 >
   {{ text }}
 </button>
