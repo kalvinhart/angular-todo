@@ -4,7 +4,7 @@
     <input type="text" name="todoText" id="todoText" [(ngModel)]="todoText" />
   </div>
   <div class="button-group">
-    <app-button [text]="'Add'"></app-button>
-    <app-button [text]="'Cancel'"></app-button>
+    <app-button [type]="'submit'" [text]="'Add'"></app-button>
+    <app-button [type]="'reset'" [text]="'Reset'"></app-button>
   </div>
 </form>

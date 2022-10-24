@@ -1,1 +1,7 @@
-<button class="btn">{{ text }}</button>
+<button
+  type="{{ type }}"
+  class="btn"
+  (click)="handleClick ? handleClick() : null"
+>
+  {{ text }}
+</button>
