@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { TodoService } from 'src/app/services/todo.service';
+import { UiService } from 'src/app/services/ui.service';
 import { Todo } from 'src/app/types/Todo';
-
-import { NgForm } from '@angular/forms';
 
 import { v4 as uuid } from 'uuid';
 @Component({
@@ -12,8 +12,14 @@ import { v4 as uuid } from 'uuid';
 })
 export class TodosComponent implements OnInit {
   todos: Todo[] = [];
+  showAddForm: boolean = false;
+  subscription!: Subscription;
 
-  constructor(private todoService: TodoService) {}
+  constructor(private todoService: TodoService, private uiService: UiService) {
+    this.subscription = this.uiService
+      .onToggle()
+      .subscribe((val) => (this.showAddForm = val));
+  }
 
   ngOnInit(): void {
     this.todos = this.todoService.getTodos();

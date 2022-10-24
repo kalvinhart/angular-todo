@@ -1,4 +1,7 @@
 <header class="header">
   <h2>Todo List</h2>
-  <app-button [text]="'Add'"></app-button>
+  <app-button
+    text="{{ showAddForm ? 'Close' : 'Add' }}"
+    [handleClick]="toggleShowForm.bind(this)"
+  ></app-button>
 </header>
