@@ -1,3 +1,7 @@
+.form {
+  margin-bottom: 40px;
+}
+
 .button-group {
   width: 150px;
   display: flex;
