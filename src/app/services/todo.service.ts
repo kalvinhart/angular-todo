@@ -12,6 +12,21 @@ export class TodoService {
     return this.storageService.get('todos');
   }
 
+  toggleComplete(id: string): Todo[] {
+    const todos = this.getTodos();
+
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+
+    this.storageService.save('todos', newTodos);
+
+    return newTodos;
+  }
+
   saveTodo(todo: Todo) {
     const todos = this.getTodos();
     todos.push(todo);

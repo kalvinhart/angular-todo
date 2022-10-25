@@ -26,3 +26,12 @@
 .form-group {
   margin-bottom: 0;
 }
+
+.todo-text {
+  cursor: pointer;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #ccc;
+}

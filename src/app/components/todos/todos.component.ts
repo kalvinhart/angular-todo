@@ -47,4 +47,8 @@ export class TodosComponent implements OnInit {
     this.todoService.deleteTodo(id);
     this.todos = this.todos.filter((t) => t.id !== id);
   }
+
+  toggleComplete(id: string) {
+    this.todos = this.todoService.toggleComplete(id);
+  }
 }

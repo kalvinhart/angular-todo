@@ -9,5 +9,6 @@
     [todo]="todo"
     (handleDelete)="deleteTodo(todo.id)"
     (handleEdit)="updateTodo($event)"
+    (handleToggleComplete)="toggleComplete($event)"
   ></app-todo-item>
 </div>
