@@ -38,6 +38,11 @@ export class TodosComponent implements OnInit {
     this.todos.push(todo);
   }
 
+  updateTodo(todo: Todo) {
+    this.todoService.updateTodo(todo);
+    this.todos = this.todos.map((t) => (t.id === todo.id ? todo : t));
+  }
+
   deleteTodo(id: string) {
     this.todoService.deleteTodo(id);
     this.todos = this.todos.filter((t) => t.id !== id);
