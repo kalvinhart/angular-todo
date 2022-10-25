@@ -1,15 +1,18 @@
 .todo-container {
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 10px;
-  background-color: #eee;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-radius: 5px;
 }
 
 .button-group {
+  width: 160px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 

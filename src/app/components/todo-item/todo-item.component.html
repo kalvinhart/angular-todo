@@ -1,7 +1,11 @@
 <div class="todo-container" *ngIf="!editing; else elseBlock">
   <span class="todo-text">{{ todo.text }}</span>
   <div class="button-group">
-    <app-button [text]="'Edit'" (handleClick)="toggleEdit()"></app-button>
+    <app-button
+      [variant]="'secondary'"
+      [text]="'Edit'"
+      (handleClick)="toggleEdit()"
+    ></app-button>
     <app-button
       [variant]="'danger'"
       [text]="'Delete'"
@@ -22,8 +26,13 @@
         />
       </div>
       <div class="button-group">
-        <app-button [type]="'submit'" [text]="'Save'"></app-button>
         <app-button
+          [variant]="'success'"
+          [type]="'submit'"
+          [text]="'Save'"
+        ></app-button>
+        <app-button
+          [variant]="'secondary'"
           [type]="'reset'"
           [text]="'Cancel'"
           (handleClick)="toggleEdit()"
