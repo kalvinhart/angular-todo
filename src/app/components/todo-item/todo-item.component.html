@@ -3,12 +3,12 @@
   <div class="button-group">
     <app-button
       [variant]="'secondary'"
-      [text]="'Edit'"
+      [icon]="faEdit"
       (handleClick)="toggleEdit()"
     ></app-button>
     <app-button
       [variant]="'danger'"
-      [text]="'Delete'"
+      [icon]="faTrash"
       (handleClick)="deleteTodo(todo.id)"
     ></app-button>
   </div>
@@ -29,12 +29,12 @@
         <app-button
           [variant]="'success'"
           [type]="'submit'"
-          [text]="'Save'"
+          [icon]="faSave"
         ></app-button>
         <app-button
           [variant]="'secondary'"
           [type]="'reset'"
-          [text]="'Cancel'"
+          [icon]="faTimes"
           (handleClick)="toggleEdit()"
         ></app-button>
       </div>

@@ -4,5 +4,6 @@
   [ngClass]="'btn-' + variant"
   (click)="onClick()"
 >
-  {{ text }}
+  <fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
+  <span *ngIf="text">{{ text }}</span>
 </button>

@@ -1,4 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  faEdit,
+  faSave,
+  faTimes,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import { Todo } from 'src/app/types/Todo';
 
 @Component({
@@ -12,6 +18,10 @@ export class TodoItemComponent implements OnInit {
   @Output() handleEdit: EventEmitter<Todo> = new EventEmitter();
   editing: boolean = false;
   editText: string = '';
+  faEdit = faEdit;
+  faSave = faSave;
+  faTrash = faTrash;
+  faTimes = faTimes;
 
   constructor() {}
 
