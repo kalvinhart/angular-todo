@@ -8,5 +8,6 @@
     *ngFor="let todo of todos"
     [todo]="todo"
     (handleDelete)="deleteTodo(todo.id)"
+    (handleEdit)="updateTodo($event)"
   ></app-todo-item>
 </div>
