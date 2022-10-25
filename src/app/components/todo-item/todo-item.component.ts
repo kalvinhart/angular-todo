@@ -16,6 +16,7 @@ export class TodoItemComponent implements OnInit {
   @Input() todo!: Todo;
   @Output() handleDelete: EventEmitter<string> = new EventEmitter();
   @Output() handleEdit: EventEmitter<Todo> = new EventEmitter();
+  @Output() handleToggleComplete: EventEmitter<string> = new EventEmitter();
   editing: boolean = false;
   editText: string = '';
   faEdit = faEdit;
@@ -49,5 +50,9 @@ export class TodoItemComponent implements OnInit {
 
     this.editing = false;
     this.editText = '';
+  }
+
+  toggleComplete(id: string) {
+    this.handleToggleComplete.emit(id);
   }
 }
