@@ -11,6 +11,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { ButtonComponent } from './components/button/button.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TodoFormComponent } from './components/todo-form/todo-form.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TodoFormComponent } from './components/todo-form/todo-form.component';
     ButtonComponent,
     HeaderComponent,
     TodoFormComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
