@@ -5,7 +5,7 @@ import {
   faTimes,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
-import { Todo } from 'src/app/types/Todo';
+import { TodoWithId } from 'src/app/types/Todo';
 
 @Component({
   selector: 'app-todo-item',
@@ -13,10 +13,10 @@ import { Todo } from 'src/app/types/Todo';
   styleUrls: ['./todo-item.component.css'],
 })
 export class TodoItemComponent implements OnInit {
-  @Input() todo!: Todo;
+  @Input() todo!: TodoWithId;
   @Output() handleDelete: EventEmitter<string> = new EventEmitter();
-  @Output() handleEdit: EventEmitter<Todo> = new EventEmitter();
-  @Output() handleToggleComplete: EventEmitter<string> = new EventEmitter();
+  @Output() handleEdit: EventEmitter<TodoWithId> = new EventEmitter();
+  @Output() handleToggleComplete: EventEmitter<TodoWithId> = new EventEmitter();
   editing: boolean = false;
   editText: string = '';
   faEdit = faEdit;
@@ -52,7 +52,7 @@ export class TodoItemComponent implements OnInit {
     this.editText = '';
   }
 
-  toggleComplete(id: string) {
-    this.handleToggleComplete.emit(id);
+  toggleComplete(todo: TodoWithId) {
+    this.handleToggleComplete.emit(todo);
   }
 }

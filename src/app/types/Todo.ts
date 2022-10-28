@@ -1,5 +1,8 @@
 export interface Todo {
-  id: string;
   text: string;
   completed: boolean;
+}
+
+export interface TodoWithId extends Todo {
+  id: string;
 }
