@@ -54,7 +54,9 @@ export class TodosComponent implements OnInit {
   deleteTodo(id: string) {
     this.todoService
       .deleteTodo(id)
-      .subscribe((todo) => this.todos.filter((t) => t.id !== todo.id));
+      .subscribe(
+        (todo) => (this.todos = this.todos.filter((t) => t.id !== todo.id))
+      );
   }
 
   toggleComplete(todo: TodoWithId) {
