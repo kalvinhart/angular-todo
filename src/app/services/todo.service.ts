@@ -1,57 +1,34 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Todo } from '../types/Todo';
-import { StorageService } from './storage.service';
+import { Observable } from 'rxjs';
+import { Todo, TodoWithId } from '../types/Todo';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  constructor(private storageService: StorageService) {}
+  private url = 'http://localhost:8083/api/todos';
 
-  getTodos() {
-    return this.storageService.get('todos');
+  constructor(private httpClient: HttpClient) {}
+
+  getTodos(): Observable<TodoWithId[]> {
+    return this.httpClient.get<TodoWithId[]>(this.url);
   }
 
-  toggleComplete(id: string): Todo[] {
-    const todos = this.getTodos();
-
-    const newTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        todo.completed = !todo.completed;
-      }
-      return todo;
-    });
-
-    this.storageService.save('todos', newTodos);
-
-    return newTodos;
+  toggleComplete(todo: TodoWithId): Observable<TodoWithId> {
+    todo.completed = !todo.completed;
+    return this.updateTodo(todo);
   }
 
-  saveTodo(todo: Todo) {
-    const todos = this.getTodos();
-    todos.push(todo);
-    this.storageService.save('todos', todos);
+  saveTodo(todo: Todo): Observable<TodoWithId> {
+    return this.httpClient.post<TodoWithId>(this.url, todo);
   }
 
-  updateTodo(updatedTodo: Todo): Todo[] {
-    const todos = this.getTodos();
-
-    const newTodos = todos.map((todo) =>
-      todo.id === updatedTodo.id ? updatedTodo : todo
-    );
-
-    this.storageService.save('todos', newTodos);
-
-    return newTodos;
+  updateTodo(updatedTodo: TodoWithId): Observable<TodoWithId> {
+    return this.httpClient.put<TodoWithId>(this.url, updatedTodo);
   }
 
-  deleteTodo(id: string): Todo[] {
-    const todos = this.getTodos();
-
-    const newTodos = todos.filter((todo) => todo.id !== id);
-
-    this.storageService.save('todos', newTodos);
-
-    return newTodos;
+  deleteTodo(id: string): Observable<TodoWithId> {
+    return this.httpClient.delete<TodoWithId>(`${this.url}/${id}`);
   }
 }

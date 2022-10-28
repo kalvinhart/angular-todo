@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TodoService } from 'src/app/services/todo.service';
 import { UiService } from 'src/app/services/ui.service';
-import { Todo } from 'src/app/types/Todo';
+import { Todo, TodoWithId } from 'src/app/types/Todo';
 
 import { v4 as uuid } from 'uuid';
 @Component({
@@ -11,7 +11,7 @@ import { v4 as uuid } from 'uuid';
   styleUrls: ['./todos.component.css'],
 })
 export class TodosComponent implements OnInit {
-  todos: Todo[] = [];
+  todos: TodoWithId[] = [];
   showAddForm: boolean = false;
   subscription!: Subscription;
 
@@ -22,31 +22,47 @@ export class TodosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.todos = this.todoService.getTodos();
+    this.getTodos();
+  }
+
+  getTodos() {
+    return this.todoService
+      .getTodos()
+      .subscribe((todos) => (this.todos = todos));
   }
 
   handleSubmit(text: string): void {
-    console.log('text: ', text);
-
-    const todo: Todo = {
-      id: uuid(),
+    const newTodo: Todo = {
       text,
       completed: false,
     };
 
-    this.todoService.saveTodo(todo);
-    this.todos.push(todo);
+    this.todoService
+      .saveTodo(newTodo)
+      .subscribe((todo) => this.todos.push(todo));
   }
 
-  updateTodo(todo: Todo) {
-    this.todos = this.todoService.updateTodo(todo);
+  updateTodo(todo: TodoWithId) {
+    this.todoService
+      .updateTodo(todo)
+      .subscribe(
+        (todo) =>
+          (this.todos = this.todos.map((t) => (t.id === todo.id ? todo : t)))
+      );
   }
 
   deleteTodo(id: string) {
-    this.todos = this.todoService.deleteTodo(id);
+    this.todoService
+      .deleteTodo(id)
+      .subscribe((todo) => this.todos.filter((t) => t.id !== todo.id));
   }
 
-  toggleComplete(id: string) {
-    this.todos = this.todoService.toggleComplete(id);
+  toggleComplete(todo: TodoWithId) {
+    this.todoService
+      .toggleComplete(todo)
+      .subscribe(
+        (todo) =>
+          (this.todos = this.todos.map((t) => (t.id === todo.id ? todo : t)))
+      );
   }
 }
