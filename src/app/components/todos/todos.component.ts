@@ -4,7 +4,6 @@ import { TodoService } from 'src/app/services/todo.service';
 import { UiService } from 'src/app/services/ui.service';
 import { Todo, TodoWithId } from 'src/app/types/Todo';
 
-import { v4 as uuid } from 'uuid';
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
@@ -13,6 +12,7 @@ import { v4 as uuid } from 'uuid';
 export class TodosComponent implements OnInit {
   todos: TodoWithId[] = [];
   showAddForm: boolean = false;
+  isLoading: boolean = true;
   subscription!: Subscription;
 
   constructor(private todoService: TodoService, private uiService: UiService) {
@@ -26,9 +26,12 @@ export class TodosComponent implements OnInit {
   }
 
   getTodos() {
-    return this.todoService
-      .getTodos()
-      .subscribe((todos) => (this.todos = todos));
+    this.isLoading = true;
+
+    return this.todoService.getTodos().subscribe((todos) => {
+      this.isLoading = false;
+      return (this.todos = todos);
+    });
   }
 
   handleSubmit(text: string): void {

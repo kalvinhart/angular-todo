@@ -25,7 +25,10 @@ export class TodoService {
   }
 
   updateTodo(updatedTodo: TodoWithId): Observable<TodoWithId> {
-    return this.httpClient.put<TodoWithId>(this.url, updatedTodo);
+    return this.httpClient.put<TodoWithId>(
+      `${this.url}/${updatedTodo.id}`,
+      updatedTodo
+    );
   }
 
   deleteTodo(id: string): Observable<TodoWithId> {

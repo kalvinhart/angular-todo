@@ -4,11 +4,16 @@
     *ngIf="showAddForm"
     (addTask)="handleSubmit($event)"
   ></app-todo-form>
-  <app-todo-item
-    *ngFor="let todo of todos"
-    [todo]="todo"
-    (handleDelete)="deleteTodo(todo.id)"
-    (handleEdit)="updateTodo($event)"
-    (handleToggleComplete)="toggleComplete($event)"
-  ></app-todo-item>
+
+  <app-spinner *ngIf="isLoading; else elseBlock"></app-spinner>
+
+  <ng-template #elseBlock>
+    <app-todo-item
+      *ngFor="let todo of todos"
+      [todo]="todo"
+      (handleDelete)="deleteTodo(todo.id)"
+      (handleEdit)="updateTodo($event)"
+      (handleToggleComplete)="toggleComplete($event)"
+    ></app-todo-item>
+  </ng-template>
 </div>
