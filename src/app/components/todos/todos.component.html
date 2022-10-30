@@ -2,7 +2,7 @@
   <app-header></app-header>
   <app-todo-form
     *ngIf="showAddForm"
-    (addTask)="handleSubmit($event)"
+    (addTodo)="handleSubmit($event)"
   ></app-todo-form>
 
   <app-spinner *ngIf="isLoading; else elseBlock"></app-spinner>
