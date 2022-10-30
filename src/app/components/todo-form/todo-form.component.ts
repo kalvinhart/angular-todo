@@ -6,7 +6,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./todo-form.component.css'],
 })
 export class TodoFormComponent implements OnInit {
-  @Output() addTask: EventEmitter<string> = new EventEmitter();
+  @Output() addTodo: EventEmitter<string> = new EventEmitter();
   todoText: string = '';
 
   constructor() {}
@@ -15,9 +15,8 @@ export class TodoFormComponent implements OnInit {
 
   submitForm() {
     if (!this.todoText) return;
-    console.log(this.todoText);
 
-    this.addTask.emit(this.todoText);
+    this.addTodo.emit(this.todoText);
 
     this.todoText = '';
   }
