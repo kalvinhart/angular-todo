@@ -15,7 +15,6 @@ export class TodoFormComponent implements OnInit {
 
   submitForm() {
     if (!this.todoText) return;
-    console.log(this.todoText);
 
     this.addTask.emit(this.todoText);
 
