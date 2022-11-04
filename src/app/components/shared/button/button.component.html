@@ -3,6 +3,7 @@
   class="btn"
   [ngClass]="'btn-' + variant"
   (click)="onClick()"
+  [disabled]="disabled"
 >
   <fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
   <span *ngIf="text">{{ text }}</span>
