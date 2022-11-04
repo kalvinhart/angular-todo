@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { EventService } from 'src/app/services/event.service';
-import { TodoService } from 'src/app/services/todo.service';
-import { UiService } from 'src/app/services/ui.service';
+import { EventService } from 'src/app/components/todo/services/event.service';
+import { TodoService } from 'src/app/components/todo/services/todo.service';
+import { UiService } from 'src/app/components/todo/services/ui.service';
 import { Todo, TodoWithId } from 'src/app/types/Todo';
 
 @Component({
