@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoModule } from './components/todo/todo.module';
 import { SharedModule } from './components/shared/shared.module';
+import { ChatModule } from './components/chat/chat.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { SharedModule } from './components/shared/shared.module';
     HttpClientModule,
     SharedModule,
     TodoModule,
+    ChatModule,
   ],
   exports: [],
   providers: [],
