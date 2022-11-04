@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { EventService } from 'src/app/services/event.service';
 import { TodoService } from 'src/app/services/todo.service';
 import { UiService } from 'src/app/services/ui.service';
 import { Todo, TodoWithId } from 'src/app/types/Todo';
@@ -14,11 +15,22 @@ export class TodosComponent implements OnInit {
   showAddForm: boolean = false;
   isLoading: boolean = true;
   subscription!: Subscription;
+  events!: Subscription;
 
-  constructor(private todoService: TodoService, private uiService: UiService) {
+  constructor(
+    private todoService: TodoService,
+    private uiService: UiService,
+    private eventService: EventService
+  ) {
     this.subscription = this.uiService
       .onToggle()
       .subscribe((val) => (this.showAddForm = val));
+
+    this.events = this.eventService
+      .getServerSentEvent()
+      .subscribe((newEvent) => {
+        console.log('received from server: ', newEvent);
+      });
   }
 
   ngOnInit(): void {
