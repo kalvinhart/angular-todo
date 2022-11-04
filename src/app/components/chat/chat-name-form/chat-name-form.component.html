@@ -1,0 +1,14 @@
+<form class="form" (ngSubmit)="handleSubmit()" #chatNameForm="ngForm">
+  <div class="form-group">
+    <label for="chatName" class="label">Name:</label>
+    <input type="text" name="chatName" id="chatName" [(ngModel)]="chatName" />
+  </div>
+
+  <div class="chat-form-button">
+    <app-button
+      [type]="'submit'"
+      [text]="'Join Chat'"
+      [disabled]="!chatNameForm.form.valid"
+    ></app-button>
+  </div>
+</form>
